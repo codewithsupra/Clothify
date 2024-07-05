@@ -8,6 +8,7 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import { CartContext } from '../../context/cart.context';
+import { useNavigate } from 'react-router-dom';
 import {
   NavigationContainer,
   LogoContainer,
@@ -19,6 +20,12 @@ import {
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
+  const navigate=useNavigate();
+  const handleSignOut = async () => {
+    await signOutUser();
+    navigate('/'); // Navigate to home after sign out
+  };
+  
 
   return (
     <Fragment>
@@ -29,7 +36,7 @@ const Navigation = () => {
         <NavLinksContainer>
           <NavLink to='/shop'>SHOP</NavLink>
           {currentUser ? (
-            <NavLinkSpan onClick={signOutUser}>SIGN OUT</NavLinkSpan>
+            <NavLinkSpan  onClick={handleSignOut}>SIGN OUT</NavLinkSpan>
           ) : (
             <NavLink to='/auth'>SIGN IN</NavLink>
           )}
