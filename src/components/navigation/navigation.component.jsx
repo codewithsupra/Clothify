@@ -1,6 +1,7 @@
 // src/routes/navigation/navigation.component.jsx
 
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Fragment, useContext } from 'react';
 import { UserContext } from '../../context/user.context';
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
@@ -16,10 +17,14 @@ import {
   NavLink,
   NavLinkSpan
 } from './navigation.styles.jsx';
+import { selectCurrentUser } from '../../store/user/user.selector';
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
+
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+//   const { currentUser } = useContext(UserContext);
+const currentUser=useSelector(selectCurrentUser);
+ const isCartOpen=useSelector(selectIsCartOpen);
   const navigate=useNavigate();
   const handleSignOut = async () => {
     await signOutUser();
