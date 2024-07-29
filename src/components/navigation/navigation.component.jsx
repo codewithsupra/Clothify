@@ -2,13 +2,13 @@
 
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Fragment, useContext } from 'react';
-import { UserContext } from '../../context/user.context';
+
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
-import { CartContext } from '../../context/cart.context';
+import { Fragment } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import {
   NavigationContainer,
